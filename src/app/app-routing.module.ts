@@ -5,6 +5,7 @@ import { WelcomeComponent }  from './welcome.component';
 import { DashboardLayoutComponent }  from './dashboard.layout.component';
 import { PageNotFoundComponent }  from './page-not-found.component';
 import { AuthGuardService }  from './auth-guard.service';
+import { CustomPreloadingService } from './custom-preloading.service';
 
 const routes: Routes = [
   {
@@ -18,12 +19,14 @@ const routes: Routes = [
     children: [
       {
         path: 'address',
-        loadChildren: 'app/address/address.module#AddressModule'
+        loadChildren: 'app/address/address.module#AddressModule',
+        data:{preload:true,delay:true}
       },
       {
         path: 'admin',
         loadChildren: 'app/admin/admin.module#AdminModule',
-        canLoad: [ AuthGuardService ]
+        canLoad: [ AuthGuardService ],
+         data:{preload:true,delay:true}
       },
       {
         path: 'welcome',
@@ -41,7 +44,7 @@ const routes: Routes = [
   imports: [ 
       RouterModule.forRoot(routes,
       {
-        preloadingStrategy: PreloadAllModules
+        preloadingStrategy: CustomPreloadingService
       }) 
   ],
   exports: [ 

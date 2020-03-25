@@ -7,6 +7,7 @@ import { DashboardLayoutComponent }  from './dashboard.layout.component';
 import { PageNotFoundComponent }  from './page-not-found.component';
 import { AppRoutingModule }  from './app-routing.module';
 import { AuthModule }  from './authentication/auth.module';
+import { CustomPreloadingService } from './custom-preloading.service';
 
 @NgModule({
   imports: [     
@@ -21,7 +22,7 @@ import { AuthModule }  from './authentication/auth.module';
     DashboardLayoutComponent,
     PageNotFoundComponent
   ],
-  providers: [ ],
+  providers: [ CustomPreloadingService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { 
